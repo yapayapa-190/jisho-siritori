@@ -1,8 +1,8 @@
 /*汎用*/
 @media (max-width: 600px) {
     main {
-        width: clamp(500px, 95vw,600px);
-        font-size: 20px;
+        width: min(95vw,600px);
+        font-size: 200px;
     
     }
 
@@ -23,7 +23,7 @@
 
 @media (min-width: 601px) {
     main {
-        width: clamp(400px, 95vw,600px);
+        width: clamp(400px, 80vw,600px);
         margin: auto;
         font-size: 18px;
 
