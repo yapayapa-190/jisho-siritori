@@ -1,11 +1,17 @@
 /*汎用*/
-@media (max-width: 600px) {
-    main {
-        width: min(95vw,600px);
-        font-size: 200px;
-    
+@media (max-width: 10000px) {
+    * main {
+        width: clamp(500px, 95vw,600px);
+        font-size: 20px;
+        margin: auto;
     }
 
+    * button {
+        width: 200px;
+        min-width: auto;
+        font-size: 18px;
+        height: auto;
+    }
     .depth_2 {
         font-size: max(0.8em, 18px) ;
     }
@@ -17,13 +23,34 @@
     .depth_4 {
         font-size: max(0.8em, 14px) ;
         margin: 0;
-        
     }
+    #rule {
+        width: max(90%, 300px);
+    }
+
+    #title_buttons {
+        width: max(200px, 40vw);
+    }
+    #title_buttons button {
+        flex-wrap: nowrap;
+    }
+
+    #choice_word_input {
+        width: max(200px, 50vw);
+    }
+    
+    * dialog {
+        width: 70vw;
+        height: 40vh;
+        min-height: auto;
+    }
+
 }
+
 
 @media (min-width: 601px) {
     main {
-        width: clamp(400px, 80vw,600px);
+        width: clamp(400px, vw,600px);
         margin: auto;
         font-size: 18px;
 
@@ -42,8 +69,18 @@
         margin: 0;
         
     }
-}
+    #rule {
+        width: min(90%, 400px);
+    }
 
+    #title_buttons {
+        width: clamp(110px,40vw,200px);
+    }
+
+    #choice_word_input {
+        width: clamp(200px, 30vw, 300px);
+    }
+}
 
 
 
@@ -156,7 +193,8 @@
 }
 
 #setting_screen {
-    height: max(60vh, auto);
+    height: 60vh;
+    min-height: auto;
 
     margin: auto;
     padding: 10px 10px;
@@ -184,7 +222,7 @@
     align-items: center;
     gap: 10px;
     
-    width: clamp(110px,40vw,200px);
+
     margin:10px auto;
     
 
@@ -224,7 +262,6 @@
 }
 
 #choice_word_input {
-    min-width: clamp(200px, 30vw, 300px);
 
     resize: none;
 }
@@ -275,7 +312,7 @@
 }
 
 #check_button_space {
-    padding:0 clamp(1px, 5%, none) ;
+    padding:0 clamp(1px, 5%, 10px) ;
 }
 
 #give_up_log {
@@ -321,7 +358,6 @@
 
 /*ルール*/
 #rule {
-    width: min(90%, 400px);
     margin: 0 auto;
     
     background-color: #30c0ff0a;
