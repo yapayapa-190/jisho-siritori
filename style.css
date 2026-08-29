@@ -1,18 +1,51 @@
 /*汎用*/
-
-.depth_2 {
-    font-size: max(0.8em, 14px) ;
-}
-
-.depth_3 {
-    font-size: max(0.8em, 12px) ;
-}
-
-.depth_4 {
-    font-size: max(0.8em, 10px) ;
-    margin: 0;
+@media (max-width: 600px) {
+    main {
+        width: clamp(500px, 95vw,600px);
+        font-size: 20px;
     
+    }
+
+    .depth_2 {
+        font-size: max(0.8em, 18px) ;
+    }
+
+    .depth_3 {
+        font-size: max(0.8em, 16px) ;
+    }
+
+    .depth_4 {
+        font-size: max(0.8em, 14px) ;
+        margin: 0;
+        
+    }
 }
+
+@media (min-width: 601px) {
+    main {
+        width: clamp(400px, 95vw,600px);
+        margin: auto;
+        font-size: 18px;
+
+    }
+
+    .depth_2 {
+        font-size: max(0.8em, 14px) ;
+    }
+
+    .depth_3 {
+        font-size: max(0.8em, 12px) ;
+    }
+
+    .depth_4 {
+        font-size: max(0.8em, 10px) ;
+        margin: 0;
+        
+    }
+}
+
+
+
 
 .center {
     text-align: center ;
@@ -100,15 +133,11 @@
 
 /*スクリーン*/
 #title_screen {
-    width: clamp(400px, 80vw, 600px);
-
     margin: auto;
 }
 
 
 #game_screen {
-    width: clamp(400px, 80vw, 600px);
-
     margin: auto;
     padding: 10px;
     padding-bottom: 5vh;
@@ -120,8 +149,6 @@
 
 
 #result_screen {
-    width: clamp(400px, 80vw, 600px);
-
     margin: auto;
     padding: 5px;
 
@@ -129,7 +156,6 @@
 }
 
 #setting_screen {
-    width: clamp(400px, 80vw, 600px);
     height: max(60vh, auto);
 
     margin: auto;
@@ -142,7 +168,6 @@
 
 
 #err_screen {
-    width: clamp(400px, 80vw, 600px);
     margin: auto;
     margin-top: 10vh;
 }
@@ -306,7 +331,7 @@
 }
 
 #rule .depth_1 {
-    font-size: 1.2rem;
+    font-size: 1em;
 }
 
 #rule .used summary {
@@ -352,7 +377,7 @@
 
 
 #rule summary .depth_1 {
-    font-size: max(1.2rem, 18px);
+    font-size: max(1.2em, 18px);
     text-align: left;
 }
 
