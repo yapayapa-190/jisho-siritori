@@ -1,12 +1,12 @@
 /*汎用*/
-@media (max-width:10000px) {
-    * main {
+@media (max-width: 600px) {
+    main {
         width: clamp(500px, 95vw,600px);
-        font-size: 300px;
+        font-size: 30px;
         margin: auto;
     }
 
-    * button {
+    button {
         width: 200px;
         min-width: auto;
         font-size: 18px;
@@ -39,7 +39,7 @@
         width: max(200px, 50vw);
     }
     
-    * dialog {
+    dialog {
         width: 70vw;
         height: 40vh;
         min-height: auto;
@@ -47,7 +47,7 @@
 
 }
 
-/*
+
 @media (min-width: 601px) {
     main {
         width: clamp(400px, 80vw,600px);
@@ -82,7 +82,7 @@
     }
 }
 
-*/
+
 
 .center {
     text-align: center ;
@@ -124,26 +124,26 @@
     margin: 5px 0;
 }
 
-* textarea {
+textarea {
     resize: none;
 }
 
 
-* button {
+button {
     user-select: none;
 }
 
-* summary {
+summary {
     padding-left: 5px;
     user-select: none;
     cursor: pointer;
 }
 
-* label {
+label {
     user-select: none;
 }
 
-* h4 {
+h4 {
     font-size: max(0.85em, 11px);
     font-weight: 500;
     margin: auto;
