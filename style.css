@@ -48,7 +48,7 @@
 }
 
 
-@media (min-width: 601px) {
+@media (min-width: 1001px) {
     main {
         width: clamp(400px, 80vw,600px);
         margin: auto;
