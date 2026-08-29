@@ -28,7 +28,7 @@ window.addEventListener("unhandledrejection",(event) => {
 let tokenizer ;
 
 kuromoji.builder({
-    dicPath :"/dict/"
+    dicPath :"./dict/"
 }).build(function (err,t){
 
     if (err) {
