@@ -2,7 +2,7 @@
 @media (max-width: 600px) {
     * main {
         width: clamp(500px, 95vw,600px);
-        font-size: 24px;
+        font-size: 100px;
         margin: auto;
     }
 
