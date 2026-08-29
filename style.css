@@ -1,8 +1,8 @@
 /*汎用*/
-@media (max-width: 600px) {
+@media (max-width:10000px) {
     * main {
         width: clamp(500px, 95vw,600px);
-        font-size: 100px;
+        font-size: 30px;
         margin: auto;
     }
 
@@ -47,7 +47,7 @@
 
 }
 
-
+/*
 @media (min-width: 601px) {
     main {
         width: clamp(400px, 80vw,600px);
@@ -82,7 +82,7 @@
     }
 }
 
-
+*/
 
 .center {
     text-align: center ;
