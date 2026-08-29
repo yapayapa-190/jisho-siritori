@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>辞書しりとり</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="top_space"></div>
+        <main id="content">
+            <div class="screens" id="title_screen">
+                <h1 class="center none_select">辞書しりとり</h1>
+                <div id="title_buttons">
+                    <button id="start_button" >ゲームスタート</button>
+
+                    <!--
+                    <button class="space_top_10px" id="rule_button">ルール説明</button>
+                    最初から表示するので不要
+                    -->
+                    <button id="open_setting_button">設定</button>
+                </div>
+
+                <details class="space_top_10px" id="rule"><!--ルール説明-->
+                    <summary class="depth_1">ルール説明</summary>
+
+                    <!--初めての方向け-->
+                    <details class="bigin depth_1 space_top_10px">
+                        <summary class="depth_2">初めての方向け</summary>
+                        <div class="under_layer bigin">
+
+                            <!--このゲームについて-->
+                            <details class="depth_2 space_top_10px">
+                                <summary class="depth_3">このゲームについて</summary>
+                                <div class="under_layer">
+                                    <p class="depth_4">
+                                        このゲームは辞書のように単語の説明を繰り返していくゲームです。<br>
+                                        しりとりというだけあって前の説明から単語を選んで続けていきます。
+                                    </p>
+                                </div>
+                            </details>
+
+                            <!--ゲームの流れ-->
+                            <details class="depth_2 space_top_10px">
+                                <summary class="bigin depth_3">ゲームの流れ</summary>
+                                <div class="under_layer">
+                                    <h4>1.単語の説明をしよう</h4>
+                                    <p class="depth_4">
+                                        例えば
+                                    </p>
+                                    
+                                    <p class="example depth_4">
+                                        りんご : 木に実る赤い果実
+                                    </p>
+
+                                    <p class="depth_4">
+                                        というふうに説明します。
+                                    </p>
+
+                                    <h4 class="space_top_2em">2.単語を選ぼう</h3>
+                                    <p class="depth_4">
+                                        前の説明で使った単語の中からひとつ選んで次の単語にできます。<br>
+                                        この例だと 「木」「実る」「赤い」「果実」のうちから選べます。<br>
+                                    </p>
+                                    <p class="depth_4 space_top_2em inline_block">
+                                        1,2を繰り返します。      
+                                    </p>
+                                </div>
+                            </details>
+
+                            <!--ゲームオーバー-->
+                            <details class="depth_2 space_top_10px">
+                                <summary class="bigin depth_3">ゲームオーバー</summary>
+                                <div class="under_layer">
+                                    <p class="depth_4">
+
+                                    <p class="example depth_4">
+                                        上 : 下の逆
+                                    </p>
+                                    <p class="example depth_4">
+                                        下 : 上の逆
+                                    </p>
+
+                                    <p class="depth_4">
+                                        というふうに辞書に書かれていたら「上」「下」がわからない人は困るので、
+                                        すでに説明した単語を説明に使うのはだめです。
+                                    </p>
+                                    <p class="depth_4 space_top_2em inline_block">
+                                        同様に
+                                    </p>
+
+                                    <p class="example depth_4">
+                                        りんご : りんご
+                                    </p>
+                                    <p class="example depth_4">
+                                        力 : ものを動かす力
+                                    </p>
+
+                                    <p class="depth_4">
+                                        も困るので、現在の単語を説明中に使うのもだめです。<br>
+                                        ちなみに、このようなものを循環語釈と言います。<br>
+                                        <span class="small">
+                                            ギブアップというボタンを押すことであきらめることができます。
+                                        </span>
+                                    </p>
+
+                                    
+                                </div>
+                            </details>
+                        </div>
+                    </details>
+
+                    <!--慣れてきた人向け-->
+                    <details class="used depth_1 space_top_10px">
+                        <summary class="depth_2">慣れてきた人向け</summary>
+                        <div class="under_layer">
+
+                            <!--入力について-->
+                            <details class="depth_2">
+                                <summary class="depth_3 space_top_10px">入力について</summary>
+                                <div class="under_layer">
+                                    <h4>1.ひらがな表記は避けてください</h4>
+                                    
+                                    <p class="example depth_4">
+                                        りんご : きにみのるあかいかじつ
+                                    </p>
+
+                                    <p class="depth_4">
+                                        とすると、文をわけたり、認識するときに間違えやすいです。
+                                    </p>
+                                        
+                                    <p class="example depth_4">
+                                        りんご : 木に実る赤い果実
+                                    </p>
+
+                                    <p class="depth_4">
+                                        のようにするといいです。
+                                    </p>
+
+                                    <h4 class="space_top_2em">2.同じ単語は同じ表記で書いてください</h4>
+                                    <p class="depth_4">
+                                        りんご,リンゴ,林檎はすべて違う単語として判定してしまいます。<br>
+                                        なので基本的に同じ表記で書いてください。
+                                        <span class="small">
+                                            (ながく続くと忘れてしまうがそれはしょうがない)
+                                        </span>
+                                    </p>
+                                </div>
+                            </details>
+
+                            <!--設定-->
+                            <details class="depth_2 space_top_10px">
+                                <summary class="depth_3">設定</summary>
+                                <div class="under_layer">                    
+                                    <h4>1.説明した単語を表示する</h4>
+                                    <p class="depth_4">
+                                        説明した単語
+                                        <span class="small">
+                                            (<span class="example">りんご : 木に実る赤い果実</span>
+                                            としたならりんごのこと)
+                                        </span>
+                                        をゲーム画面の下に表示します。
+                                    </p>
+
+                                    <h4 class="space_top_2em">2.最初の単語を自分で入力する</h4>
+                                    <p class="depth_4">                                
+                                        オフだとランダムな単語からひとつ選んで始まりますが、
+                                        この設定をいれると好きな単語を入力して始められます。
+                                    </p>
+
+                                    <h4 class="space_top_2em">3.品詞を追加する</h4>
+                                    <p class="depth_4">
+                                    次の単語はデフォルトだと
+                                    <span class="small">「名詞」「動詞」「形容詞」「連体詞」「副詞」「接続詞」</span>
+                                    の中から選択できますが、オンにすることで他の品詞も追加できます。
+                                    </p>
+
+                                    <p class="depth_4 space_top_2em">
+                                        <span class="small">
+                                            品詞分類は 分析に用いている 「kuromoji.js」の分類体系に依存しており、大まかに上記6つと
+                                            「助詞」「助動詞」「感動詞」「接頭詞」「フィラー」「記号」「その他」の計13種類で分類しています。
+                                        </span>
+                                    </p>
+                                </div>
+                            </details>
+
+                            <!--変わった遊び方-->
+                            <details class="depth_2 space_top_10px" id="unique_style_group">
+                                <summary class="depth_3">変わった遊び方</summary>
+                                <div class="under_layer">
+                                    <p class="depth_4">
+                                        変わった遊び方をすることもできます<br>
+                                        例えば悪魔の辞典みたく、単語を皮肉や、ユーモアを交えた表現で説明する<br>
+                                        新明解みたく、個性的な表現、独特な切り口で説明する、など<br>
+                                        ほかには学問に絡めて説明する、つまり
+                                        <span class="example">
+                                            りんご : エジソンが万有引力を発見する要因となった果実
+                                        </span>
+                                        など、自分の好きな学問に関連させるのもいいです
+                                    </p>
+
+                                    <!--新明解,悪魔の辞典について-->
+                                    <details class="depth_3 space_top_10px" id="unique_style_1">
+                                        <summary class="depth_4">悪魔の辞典？ 新明解？</summary>
+                                        <div><!--under_layerを付けたいが深くなりすぎるため避ける-->
+                                            <p class="depth_4">
+                                                このふたつはおもしろい辞書として有名で、特徴的な語釈が多くあります。例をあげると
+                                            </p>
+                                            <h4 class="space_top_10px no_back">悪魔の辞典では</h4>
+                                            <p class="depth_4">
+                                                <span class="example">
+                                                    平和 : 「国際事情で、ふたつの戦争の間にある、だましあいの時期。」
+                                                    <span class="footnote_open_button none_select" data-footnote="1"><sup>[1]</sup></span>
+                                                </span>
+
+                                                <span class="example space_top_10px">
+                                                    幸福 : 「他人の<ruby>惨<rt>みじ</rt></ruby>めなありさまを見まもるうちに起ってくる快感。」
+                                                    <span class="footnote_open_button none_select" data-footnote="2"><sup>[2]</sup></span>
+                                                </span>
+                                            </p>
+                                                
+                                            <h4 class="space_top_10px no_back">新明解では</h4>
+                                            <p class="depth_4">
+                                                <span class="example">
+                                                    生活態度 : 「生きる目標をどこに置くか、毎日の生活のリズムをどのように設定するか、
+                                                    他人・社会とのかかわりはどうあるべきか、自分をどうやって磨き高め豊かにしていくか、
+                                                    などの基本的問題について考えた上で(何も考えないまま)過ごす毎日の生活のしかた。」
+                                                    <span class="footnote_open_button none_select" data-footnote="3"><sup>[3]</sup></span>
+                                                </span>
+
+                                                <span class="example space_top_10px">
+                                                    恋愛 : 「特定の相手に対して他の全てを犠牲にしても悔い無いと思い込むような愛情をいだき、
+                                                    常に相手のことを思っては、二人だけでいたい、二人だけの世界を分かち合いたいと願い、
+                                                    それがかなえられたと言っては喜び、ちょっとでも疑念が生じれば不安になるといった状態に身を置くこと。」
+                                                    <span class="footnote_open_button none_select" data-footnote="4"><sup>[4]</sup></span>
+                                                </span>
+                                                などがあります
+                                            </p>
+                                        </div>
+                                    </details>
+                                </div>
+                            </details>
+                        </div>
+                    </details>
+                </details>
+
+                <!--ダイアログ-->
+                <div>
+                    <dialog id="footnote_1" class="footnote">
+                        <button class="footnote_close_button">×</button>
+                        <p>『悪魔の辞典』(筒井康隆訳,講談社) 平和の項より引用</p>
+                    </dialog>
+                    <dialog id="footnote_2" class="footnote">
+                        <button class="footnote_close_button">×</button>
+                        <p>『悪魔の辞典』(筒井康隆訳,講談社) 「幸福」の項より引用</p>
+                    </dialog>
+                    <dialog id="footnote_3" class="footnote">
+                        <button class="footnote_close_button">×</button>
+                        <p>『新明解国語辞典 第八版』(三省堂) 「生活」の項「─態度」より引用</p>
+                    </dialog>
+                    <dialog id="footnote_4" class="footnote">
+                        <button class="footnote_close_button">×</button>
+                        <p>『新明解国語辞典 第八版』(三省堂) 「恋愛」の項より引用</p>
+                    </dialog>
+                </div>
+            </div>
+
+            <div class="screens" id="game_screen" style="display : none;">
+                <h1 class="center none_select">辞書しりとり</h1>
+                <div id="description_part"><!--語釈入力部-->
+                    <p class="none_select" id="count_text"></p>
+                    <p class="none_select" id="current_word"></p><!--現在の単語の表示-->
+                    <p class="small">この単語を説明してください</p>
+                    <div id="send_description"><!--語釈送信部分-->
+                        <textarea id="description"></textarea>
+                        <button id="send_button">確定</button>
+                    </div>
+                    <button class="space_top_10px" id="give_up_button">ギブアップ</button>
+                </div>
+
+                <div id="choice_word_main" style="display : none;"><!--次の単語を選ぶ-->
+                    <p>次の単語を選んでください</p>
+                    <p id="choice_text"></p>
+                    <div id=choice_area></div>
+                    <div>
+                        <p>説明したい単語がない場合、ここに入力してください</p>
+                        <textarea id="choice_word_input"  rows="3"></textarea><br>
+                        <button id="choice_word_button">確定</button>
+                    </div>
+                </div>
+
+                <div id="manual_start_screen" style="display : none;"><!--最初の単語を入力する画面-->
+                    <p>最初の単語を入力してください</p>
+                    <textarea id="start_word_input"></textarea><br>
+                    <button id="start_word_button">確定</button>
+                    <dialog id="start_word_dialog">
+                        <p>単語が入力されていません</p>
+                        <button id="no_start_word_button">閉じる</button>
+                    </dialog>
+                </div>
+
+                <div class="small space_top_10px" id="show_worded" style="display: none;"><!--説明された単語の表示-->
+                    <details id="worded_details">
+                        <summary>説明された単語</summary>
+                        <div class="under_layer">
+                            <p id="worded_text"></p>
+                        </div>
+                </details>
+                </div>
+
+                <dialog id="give_up_log">
+                    <p>本当にギブアップしますか？</p>
+                    <div class="center">
+                        <button id="give_up_y">はい</button>
+                        <button id="give_up_n">いいえ</button>
+                    </div>
+                </dialog>
+
+                <dialog id="choice_word_sub"><!--入力した単語がない時の画面　ダイアログにする した-->
+                    <p id="choice_word_check_text"></p>
+                    <div class="center space_top_10px">
+                        <button class="choice_word_check_button" id="yes_1">OK！</button>
+                        <!--
+                        <button class="choice_word_check_button" id="yes_2">YES</button>
+                        ネタで作ろうとしたら高さが合わなかった
+                        -->
+                    </div>
+                </dialog>
+
+                <dialog id="check_screen"><!--循環語釈判定などが正しいかの確認　該当部の語釈を表示したい-->
+                    <p class="margin_5_0" id="check_text"></p><!--重複単語の表示-->
+                    <p class="margin_5_0">誤認識の場合 はい を押してください</p>
+                    <div class="space_top_10px center">
+                        <button id="check_button_y">はい</button>
+                        <span class="none_select" id="check_button_space"></span>
+                        <button id="check_button_n">いいえ</button>
+                    </div>
+                    <details class="space_top_10px">
+                        <summary>該当箇所</summary>
+                        <div class="under_layer">
+                            <p id="dup_description"></p>
+                        </div>
+                    </details>
+                </dialog>
+            </div>
+
+            <div class="screens" id="result_screen" style="display: none;"><!--リザルト画面-->
+                <p id="no_word"></p><!--説明できる単語がない場合に使う-->
+                <p id="result_count"></p><!--続いた回数の表示-->
+                <p id="used_word_count"></p><!--語釈に使われた単語の個数-->
+                <details id="record_part">
+                    <summary>単語一覧</summary>
+                    <div class="under_layer">
+                        <p id="record_text"></p><!--単語と語釈の表示-->
+                    </div>
+                </details>
+                <button class="space_top_10px" id="replay_button">もう一回やる</button><br><!--やり直し-->
+                <button class="space_top_10px" id="go_title_button">タイトル画面にもどる</button><!--タイトルへ-->
+            </div>
+
+            <div class="screens" id="setting_screen" style="display: none;"><!--設定画面　ダイアログにする-->
+                <button id="close_setting_button">設定を閉じる</button><br>
+                    <label class="space_top_10px"><!--説明した単語の表示-->
+                        <input type="checkbox" id="show_word_mode" checked>
+                        説明した単語を表示する
+                    </label><br>
+                    <label><!--最初の単語 手入力-->
+                        <input type="checkbox" id="manual_start_mode">
+                        最初の単語を自分で入力する
+                    </label>
+                <details><!--品詞追加-->
+                    <summary id="another_summary">品詞を追加する</summary>
+                    <div class="under_layer">
+                        <label><!--助詞-->
+                            <input type="checkbox" class="hinnsi" id="jyosi">
+                            助詞
+                        </label><br>
+                        
+                        <label><!--助動詞-->
+                            <input type="checkbox" class="hinnsi" id="jyodousi">
+                            助動詞
+                        </label><br>
+
+                        <label><!--感動詞-->
+                            <input type="checkbox" class="hinnsi" id="kandousi">
+                            感動詞
+                        </label><br>
+                        
+                        <label><!--接頭詞-->
+                            <input type="checkbox" class="hinnsi" id="settousi">
+                            接頭詞
+                        </label><br>
+
+                        <label><!--フィラー-->
+                            <input type="checkbox" class="hinnsi" id="filler">
+                            フィラー
+                        </label><br>
+
+                        <label><!--記号-->
+                            <input type="checkbox" class="hinnsi" id="kigou">
+                            記号
+                        </label><br>
+
+                        <label>
+                            <input type="checkbox" class="hinnsi" id="others">
+                            その他
+                        </label><br>
+                        
+                        <button id="all_check">全選択/全解除</button>
+
+                    </div>
+                </details>
+            </div>
+        </main>
+        <div id="err_screen" style="display: none;">
+            <p>
+                予期せぬエラーが発生しました<br>
+                ページを再読み込みしてお試しください
+            </p>
+        </div>
+        <div id="bottom_space"></div>
+        <script src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js"></script>
+        <script type="module" src="script.js"></script>
+    </body>
+</html>
