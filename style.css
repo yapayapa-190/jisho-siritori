@@ -2,16 +2,24 @@
 @media (max-width: 600px) {
     main {
         width: 95vw;
-        font-size: 1.5rem;
+        font-size: 2.0rem;
         margin: auto;
     }
 
+    * {
+        padding: 10px 0;
+    }
+
     button {
+
+        font-size: 1.5rem;
+
         width: 200px;
         min-width: auto;
-        font-size: 18px;
         height: auto;
+        min-height: 50px;
     }
+
     .depth_2 {
         font-size: max(0.8em, 18px) ;
     }
@@ -24,6 +32,7 @@
         font-size: max(0.8em, 14px) ;
         margin: 0;
     }
+
     #rule {
         width: max(90%, 300px);
     }
@@ -31,6 +40,7 @@
     #title_buttons {
         width: max(200px, 40vw);
     }
+
     #title_buttons button {
         flex-wrap: nowrap;
     }
@@ -44,15 +54,14 @@
         height: 40vh;
         min-height: auto;
     }
-
 }
+
 
 @media (min-width: 601px) {
     main {
         width: clamp(400px, 80vw,600px);
         margin: auto;
-        font-size: 18px;
-
+        font-size: 1.5rem;
     }
 
     .depth_2 {
@@ -66,8 +75,8 @@
     .depth_4 {
         font-size: max(0.8em, 10px) ;
         margin: 0;
-        
     }
+
     #rule {
         width: min(90%, 400px);
     }
@@ -96,6 +105,7 @@
 .space_top_2em {
     margin-top: 2em;
 }
+
 .space_bottom_10 {
     margin-bottom: 10px;
 }
@@ -172,7 +182,6 @@ h4 {
     margin: auto;
 }
 
-
 #game_screen {
     margin: auto;
     padding: 10px;
@@ -180,15 +189,11 @@ h4 {
 
     border: 1px solid #90c0f0;
     background-color: #90c0f013;
-
 }
-
 
 #result_screen {
     margin: auto;
     padding: 5px;
-
-    
 }
 
 #setting_screen {
@@ -203,7 +208,6 @@ h4 {
     background-color: #90c0f013;
 }
 
-
 #err_screen {
     margin: auto;
     margin-top: 10vh;
@@ -215,7 +219,6 @@ h4 {
 /*タイトル*/
 
 #title_buttons {
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -223,8 +226,6 @@ h4 {
     
 
     margin:10px auto;
-    
-
 }
 
 
@@ -245,7 +246,6 @@ h4 {
     max-height: 10em;
 
     resize: none;
-
 }
 
 #send_description {
@@ -257,11 +257,9 @@ h4 {
 
 #send_description button {
     margin-left: 0;
-
 }
 
 #choice_word_input {
-
     resize: none;
 }
 
@@ -295,7 +293,6 @@ h4 {
     margin: 0 auto;
     height: 25px;
     padding: 2px 5px;
-
 }
 
 
@@ -362,7 +359,6 @@ h4 {
     background-color: #30c0ff0a;
     border:2px solid #30c0ff ;
     padding: 5px;
-    
 }
 
 #rule .depth_1 {
@@ -395,7 +391,6 @@ h4 {
     border: 1px solid #d0d0d060;
     border-left: 3px solid #464646;
     background-color: #dddddd60;
-
 }
 
 .small .example {
@@ -427,7 +422,6 @@ h4 {
 
 .footnote_open_button :hover {
     border-bottom: 1px solid;
-
 }
 
 .footnote_close_button {
