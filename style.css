@@ -232,8 +232,8 @@ h4 {
 }
 
 #setting_screen {
-    height: 60vh;
-    min-height: auto;
+    height: auto;
+    min-height: 60vh;
 
     margin: auto;
     padding: 10px 10px;
