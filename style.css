@@ -65,9 +65,7 @@
     .send_description {
         width: 60%;
     }
-
     rt {
-        magin: 0px;
         padding: 0px;
     }
 }
@@ -109,7 +107,7 @@
         margin: 5px 0px;
     }
 
-    send_description {
+    #send_description {
         width: auto;
     }
 }
