@@ -58,6 +58,7 @@
     textarea {
         font-size: 1em;
     }
+    
     .example {
         margin: 1.5em 0px;
     }
@@ -65,8 +66,13 @@
     .send_description {
         width: 60%;
     }
+
     rt {
         padding: 0px;
+    }
+
+    .footnote {
+        width: 90vw;
     }
 }
 
@@ -109,6 +115,10 @@
 
     #send_description {
         width: auto;
+    }
+
+    .footnote {
+        width: 50vw;
     }
 }
 
@@ -469,7 +479,6 @@ padding: 0px;
 }
 
 .footnote {
-    width: 90vw;
     border: 1px solid;
 }
 
