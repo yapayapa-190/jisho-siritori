@@ -1,8 +1,8 @@
 /*汎用*/
-@media (max-width: 1000px) {
+@media (max-width: 600px) {
     main {
         width: 95vw;
-        font-size: 50px;
+        font-size: 1.5rem;
         margin: auto;
     }
 
@@ -46,7 +46,6 @@
     }
 
 }
-
 
 @media (min-width: 601px) {
     main {
