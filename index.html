@@ -20,7 +20,8 @@
                     <button id="open_setting_button">設定</button>
                 </div>
 
-                <details class="space_top_10px" id="rule"><!--ルール説明-->
+                <!--ルール説明-->
+                <details class="space_top_10px" id="rule">
                     <summary class="depth_1">ルール説明</summary>
 
                     <!--初めての方向け-->
@@ -283,8 +284,10 @@
                     <div id=choice_area></div>
                     <div>
                         <p>説明したい単語がない場合、ここに入力してください</p>
-                        <textarea id="choice_word_input"  rows="3"></textarea><br>
-                        <button id="choice_word_button">確定</button>
+                        <div id="choice_words">
+                            <textarea id="choice_word_input"  rows="3"></textarea>
+                            <button id="choice_word_button">確定</button>
+                        </div>
                     </div>
                 </div>
 

@@ -54,6 +54,17 @@
         height: 40vh;
         min-height: auto;
     }
+
+    textarea {
+        font-size: 1em;
+    }
+    .example {
+        margin: 1.5em 0px;
+    }
+
+    .send_description {
+        width: 60%;
+    }
 }
 
 
@@ -88,8 +99,15 @@
     #choice_word_input {
         width: clamp(200px, 30vw, 300px);
     }
-}
 
+    .example {
+        margin: 5px 0px;
+    }
+
+    send_description {
+        width: auto;
+    }
+}
 
 
 .center {
@@ -131,6 +149,10 @@
 
 .margin_5_0 {
     margin: 5px 0;
+}
+
+dialog {
+    padding: 20px;
 }
 
 textarea {
@@ -240,22 +262,24 @@ h4 {
 /*ゲーム画面*/
 
 
+
+
+#send_description {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 #description {
-    width: auto;
+    width: 100%;
     min-height: 3.1em;
     max-height: 10em;
 
     resize: none;
 }
 
-#send_description {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
 #send_description button {
+    width: 100%;
     margin-left: 0;
 }
 
@@ -267,7 +291,13 @@ h4 {
     margin: 5px 0px;
 }
 
+#choice_words {
+    width: 80%;
+}
 
+#choice_words * {
+    width: 100%;
+}
 
 #choice_area {
     display: flex;
@@ -295,7 +325,10 @@ h4 {
     padding: 2px 5px;
 }
 
-
+#give_up_log button {
+    min-width: 4em;
+    width: auto;
+}
 
 #check_screen {
     border: 2px solid #425970;
@@ -377,13 +410,13 @@ h4 {
 
 
 #rule h4:not(.no_back) {
+padding: 0px;
     border-bottom:2px solid #ff404080;
 }
 
 .example {
     display: block;
     width: 100%;
-    margin: 5px 0px;
     padding: 0px;
     padding-left: 5px;
 
@@ -397,6 +430,8 @@ h4 {
     line-height: 1;
     display: inline-block;
     width: auto;
+
+    margin: 0;
     margin-left: 3px;
     padding-left: 3px;
 
@@ -421,15 +456,17 @@ h4 {
 }
 
 .footnote_open_button :hover {
+    padding: 0px;
     border-bottom: 1px solid;
 }
 
 .footnote_close_button {
     border: 1px solid;
-    margin-top: 0;
+    margin: 5px 0px 5px 10px;
 }
 
 .footnote {
+    width: 90vw;
     border: 1px solid;
 }
 
