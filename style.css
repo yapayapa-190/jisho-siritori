@@ -65,6 +65,11 @@
     .send_description {
         width: 60%;
     }
+
+    rt {
+        magin: 0px;
+        padding: 0px;
+    }
 }
 
 
