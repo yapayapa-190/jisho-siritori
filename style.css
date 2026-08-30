@@ -18,8 +18,9 @@
 
         font-size: 1.5rem;
 
-        width: auto;
-        min-width: 200px;
+        width: 200px;
+        max-width: 100%;
+
         height: auto;
         min-height: 50px;
     }
@@ -134,8 +135,15 @@
     .footnote {
         width: 50vw;
     }
+
+    #send_description {
+        width: min(80%, 400px);
+    }
 }
 
+* {
+    max-width: 100%;
+}
 
 .center {
     text-align: center ;
@@ -173,6 +181,10 @@
 }
 
 
+dialog button {
+    max-width: 40%;
+    min-width: 3rem;
+}
 
 .margin_5_0 {
     margin: 5px 0;
@@ -296,6 +308,7 @@ h4 {
     flex-direction: column;
     gap: 5px;
 }
+
 
 #description {
     width: 100%;

@@ -28,7 +28,7 @@ window.addEventListener("unhandledrejection",(event) => {
 let tokenizer ;
 
 kuromoji.builder({
-    dicPath :"./dict/"
+    dicPath :"/dict/"
 }).build(function (err,t){
 
     if (err) {
@@ -66,6 +66,7 @@ const ruleDetail = document.querySelectorAll(".rule_detail")
 currentWord 現在の単語　[{
     辞書形　.dictionaryForm
     読み .reading
+    品詞 .type
     入力方式 .source 
     .split すでに分割された単語の配列
 },]
@@ -559,6 +560,7 @@ function showScreen(id) {
     }
 
     document.getElementById(id).style.display = "block" ;
+    scrollTop()
 }
 //一旦全部消してから欲しいところを表示する
 //一番でかいレイヤーのスクリーンの操作
@@ -985,24 +987,13 @@ document.getElementById("start_word_button").addEventListener("click",function s
 
     else {
         getTrueWord(startWord)
-        const tokens = tokenizer.tokenize(startWord)
-        const split = []
-        for (let i = 0 ; i <= tokens.length - 1 ; i++) {
-            if (i === tokens.length - 1)
-                split.push(tokens[i].dictionaryForm)
-
-            else {
-                split.push(tokens[i].surface_form)
-            }
-
-        }
 
         currentWord = {
             dictionaryForm : trueWord.dictionaryForm,
             reading : trueWord.reading,
             source : "manual",
             type : tokens[tokens.length - 1].pos,
-            split : split
+            split : trueWord.part
         }
 
         resetGame()
@@ -1518,6 +1509,9 @@ document.querySelectorAll(".footnote_close_button").forEach(button => {
 //脚注をすべて閉じる
 
 
+function scrollTop() {
+    window.scrollTo(0,0)
+}
 
 
 
