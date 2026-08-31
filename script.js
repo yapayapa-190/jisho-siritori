@@ -628,6 +628,10 @@ function checkDuplicate(wordList,description) {
         other.position.start === word.position.start
         &&
         other.position.end === word.position.end
+        &&
+        other.dictionaryForm !== word.dictionaryForm
+        &&
+        other.index !== word.index
         ) === index)
 }
 //wordList(配列) が　description(文字列) を分解した際の要素を持っているかの確認
