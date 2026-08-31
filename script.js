@@ -886,7 +886,7 @@ function result() {
     let record = ""
     let usedWord = 0
     for (const log of logList){
-        record += `${log.word} : ${log.description}\n`;
+        record += `<div class="example">${log.word} : ${log.description}</div>\n`;
         usedWord += tokenizer.tokenize(log.description).length
     }
     //単語 : 説明
@@ -895,7 +895,7 @@ function result() {
 
     resultCountText.textContent = `記録 : ${count}回`
     document.getElementById("used_word_count").textContent = `語釈に含まれている単語 : ${usedWord}個`
-    recordText.textContent = record
+    recordText.innerHTML = record
     showScreen("result_screen") 
 }
 //リザルト画面に移動
