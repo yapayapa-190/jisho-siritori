@@ -89,6 +89,11 @@
         margin: 0px;
     }
 
+    #top_space {
+        height: 3vh;
+    }
+
+
 }
 
 
@@ -139,6 +144,11 @@
     #send_description {
         width: min(80%, 400px);
     }
+
+    #top_space {
+        height: 8vh;
+    }
+
 }
 
 * {
@@ -230,9 +240,6 @@ h4 {
     margin-bottom: 30vh;
 }
 
-#top_space {
-    height: 8vh;
-}
 
 
 
