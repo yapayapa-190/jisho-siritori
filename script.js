@@ -761,6 +761,8 @@ function makeChoiceButton() {
 
         document.getElementById("choice_word_main").style.display = "none" ;
         descriptionPart.style.display = "block" ;
+
+        scrollTop()
         })
     }
 }
@@ -775,6 +777,7 @@ function submitDescription() {
     
     descriptionInput.value = "" ;
     //入力欄を空にする
+    scrollTop()
     },0)
 
     description = descriptionInput.value
