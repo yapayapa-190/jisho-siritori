@@ -543,7 +543,7 @@ function resetGame() {
     } ;
     document.getElementById("worded_details").open = false ;
     document.getElementById("start_word_input").value = "" ; 
-    document.getElementById("current_word").textContent = `現在の単語 : ${currentWord.dictionaryForm}`
+    document.getElementById("current_word").innerHTML = `<span class="example">現在の単語 : ${currentWord.dictionaryForm}</span>`
     document.getElementById("no_word").textContent = "" 
     document.getElementById("worded_text").textContent = wordedText 
     document.getElementById("count_text").textContent = `${count}語目`
@@ -881,6 +881,7 @@ function submitDescription() {
 
         console.log("成功")
     }
+    descriptionArea.style.height = "auto"
 }
 //語釈送信時に実行される関数
 //ゲームの本体
