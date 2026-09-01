@@ -597,13 +597,11 @@ function checkDuplicate(wordList,description) {
         // -2なのは最後の要素が必ず現在の単語になるため
         
         let wordPosition = 0
-        for (let j = 0 ; j <= allWordInDescription.length - 1 ; j++){
-
-
+        for (let j = 0 ; j <= allWordInDescription.length - wordList[i].split.length ; j++){
             if (wordList[i].split.every((word,k) =>
             allWordInDescription[j + k].word === word )) { //連続部分列かの確認
                 if (wordList[i].source === "manual"
-                    || (wordList[i].source === "auto" 
+                    || (wordList[i].source === "auto"
                         && wordChoiceType.includes(allWordInDescription[j].type) //含まれているかの確認
                         && allWordInDescription[j].reading === wordList[i].reading)) {
 
@@ -619,7 +617,6 @@ function checkDuplicate(wordList,description) {
                     })
                 }
             }
-
         wordPosition += tokens[j].surface_form.length 
         //開始位置の取得
         }
@@ -630,9 +627,20 @@ function checkDuplicate(wordList,description) {
         &&
         other.position.end === word.position.end
         &&
-        other.dictionaryForm !== word.dictionaryForm
+        other.word !== word.word
         &&
         other.index !== word.index
+
+//word,index を確認するのは語釈で同じ単語で循環した際の調整
+//りんご　食べ物 ののち
+//食べ物　りんご、りんご、りんご、りんご、りんご　とすると、該当部が
+//りんご　
+//りんご
+//りんご
+//りんご
+//食べ物
+//となってしまう
+
         ) === index)
 }
 //wordList(配列) が　description(文字列) を分解した際の要素を持っているかの確認
@@ -649,7 +657,16 @@ function checkWordByPart(beCheckedWords,checkingWords) {
 }
 //checking の方が bechecked の連続部分列になってないかの確認
 
-function success() {   
+function success() {  
+    if (wordList.length === 1) {
+        wordedText = "" ;
+        wordedText += currentWord.dictionaryForm ;
+    }
+
+    else if (wordList.length > 1) {
+        wordedText += `,${currentWord.dictionaryForm}` ;
+    }
+         
     count++
     wordList[wordList.length - 1].description = description ;
     //統一的に扱うための処理
@@ -866,15 +883,6 @@ function submitDescription() {
     } 
         
     else { //成功処理
-        if (wordList.length === 1) {
-            wordedText = "" ;
-            wordedText += currentWord.dictionaryForm ;
-        }
-
-        else if (wordList.length > 1) {
-            wordedText += `,${currentWord.dictionaryForm}` ;
-        }
-        
         success()
 
         document.getElementById("worded_text").textContent = wordedText ;
