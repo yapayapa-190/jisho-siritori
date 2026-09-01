@@ -999,7 +999,7 @@ document.getElementById("start_word_button").addEventListener("click",function s
             dictionaryForm : trueWord.dictionaryForm,
             reading : trueWord.reading,
             source : "manual",
-            type : tokens[tokens.length - 1].pos,
+            type : trueWord.type,
             split : trueWord.part
         }
 
