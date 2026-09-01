@@ -55,9 +55,8 @@
     }
     
     dialog {
-        width: 70vw;
-        height: 40vh;
-        min-height: auto;
+        max-width: 90vw;
+        max-height: 90vh;
     }
 
     #choice_area button {
@@ -92,6 +91,7 @@
     #top_space {
         height: 3vh;
     }
+
 
 
 }
@@ -149,6 +149,10 @@
         height: 8vh;
     }
 
+        dialog {
+        max-width: min(90vw, 600px);
+        max-height: min(90vh, 400px);
+    }
 }
 
 * {
@@ -196,14 +200,17 @@ dialog button {
     min-width: 3rem;
 }
 
+dialog {
+    padding: 20px;
+    width: fit-content;
+    height: fit-content;
+}
+
+
 .margin_5_0 {
     margin: 5px 0;
 }
 
-dialog {
-    padding: 20px;
-    height: auto;
-}
 
 textarea {
     resize: none;
