@@ -548,6 +548,7 @@ function resetGame() {
     document.getElementById("worded_text").textContent = wordedText 
     document.getElementById("count_text").textContent = `${count}語目`
 
+    console.log("初期化")
 }
 //初期化
 //currentWord の初期化を行っていないことに注意
@@ -860,8 +861,8 @@ function submitDescription() {
         dupProsess() 
 
 
-        console.log("説明した単語を使った")
         flag.currentWord = true ;
+        console.log("説明した単語を使った")
     } 
         
     else { //成功処理
@@ -983,7 +984,7 @@ document.getElementById("start_button").addEventListener("click",() => {
 })
 //ボタンを押したらスタート画面
 
-document.getElementById("start_word_button").addEventListener("click",function startWordButton() {
+document.getElementById("start_word_button").addEventListener("click",() => {
 
 
     const startWord = document.getElementById("start_word_input").value
@@ -1038,7 +1039,7 @@ document.getElementById("send_button").addEventListener("click",submitDescriptio
 //語釈を送ったら判定,選択ボタンの表示
 //ギブ,循環語釈でリザルト
 
-checkYButton.addEventListener("click",function checkY() {
+checkYButton.addEventListener("click",() => {
 
     checkDuplicate(wordList,description)
     flag.checkCurrent =false
@@ -1077,7 +1078,7 @@ checkNButton.addEventListener("click",() => {
 })
 //重複時
 
-document.getElementById("choice_word_button").addEventListener("click",function sendChoiceWord() {
+document.getElementById("choice_word_button").addEventListener("click",() => {
 
 
     const choiceWordInput = document.getElementById("choice_word_input").value
