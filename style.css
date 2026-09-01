@@ -273,6 +273,9 @@ h4 {
 }
 
 #setting_screen {
+    display: flex;
+    flex-direction: column;
+
     height: auto;
     min-height: 60vh;
 
@@ -557,4 +560,7 @@ h4 {
 }
 
 
-
+#setting_screen details div {
+    display: flex;
+    flex-direction: column; 
+}
