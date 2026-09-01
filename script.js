@@ -762,7 +762,7 @@ function makeChoiceButton() {
             split : [word.dictionaryForm],
         })
 
-        currentWordText.textContent = `現在の単語 : ${currentWord.dictionaryForm}`
+        currentWordText.innerHTML = `<span class="example">現在の単語 : ${currentWord.dictionaryForm}</span>`
 
         document.getElementById("choice_word_main").style.display = "none" ;
         descriptionPart.style.display = "block" ;
