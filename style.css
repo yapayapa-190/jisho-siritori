@@ -18,7 +18,8 @@
 
         font-size: 1.5rem;
 
-        width: 200px;
+        width: auto;
+        min-width:200px;
         max-width: 100%;
 
         height: auto;
@@ -94,6 +95,24 @@
 
     #description {
         min-height: 3.1em;
+    }
+
+    #description_part p{
+        padding: 0px;
+        margin: 16px;
+    }
+
+    #choice_word_main p{
+        padding: 0px;
+        margin: 10px;
+    }
+
+    #top_space {
+        padding: 0px;
+    } 
+
+    #result_screen p{
+        padding: 0px;
     }
 }
 
@@ -575,4 +594,19 @@ h4 {
 #setting_screen details div {
     display: flex;
     flex-direction: column; 
+}
+
+#setting_screen details div label {
+    padding: 0px;
+    margin-left: 5px;
+}
+#setting_screen details div button {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 7em;
+
+}
+
+#setting_screen div {
+    padding: 0px;
 }

@@ -535,9 +535,10 @@ function resetGame() {
     duplicate : false,
     checkCurrent : false
     } ;
+    
     document.getElementById("worded_details").open = false ;
     document.getElementById("start_word_input").value = "" ; 
-    document.getElementById("current_word").innerHTML = `<span class="example">現在の単語 : ${currentWord.dictionaryForm}</span>`
+    document.getElementById("current_word").innerHTML = `現在の単語 : ${currentWord.dictionaryForm}`
     document.getElementById("no_word").textContent = "" 
     document.getElementById("worded_text").textContent = wordedText 
     document.getElementById("count_text").textContent = `${count}語目`
