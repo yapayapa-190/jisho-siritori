@@ -92,8 +92,9 @@
         height: 3vh;
     }
 
-
-
+    #description {
+        min-height: 3.1em;
+    }
 }
 
 
@@ -125,9 +126,6 @@
         width: clamp(110px,40vw,200px);
     }
 
-    #choice_word_input {
-        width: clamp(200px, 30vw, 300px);
-    }
 
     .example {
         margin: 5px 0px;
@@ -149,11 +147,25 @@
         height: 8vh;
     }
 
-        dialog {
+    dialog {
         max-width: min(90vw, 600px);
         max-height: min(90vh, 400px);
     }
+
+    #result_screen {
+        font-size: 0.8em;
+    }
+
+    #result_screen .under_layer{
+        font-size: 0.8em;
+    }
+
+    #description {
+        min-height: 4.1em;
+    }
+
 }
+
 
 * {
     max-width: 100%;
@@ -330,7 +342,6 @@ h4 {
 
 #description {
     width: 100%;
-    min-height: 3.1em;
     max-height: 10em;
 
     resize: none;
@@ -350,7 +361,8 @@ h4 {
 }
 
 #choice_words {
-    width: 80%;
+    width: min(80%,200px);
+
 }
 
 #choice_words * {

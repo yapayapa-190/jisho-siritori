@@ -479,7 +479,7 @@ const wordChoiceType = ["名詞","動詞","形容詞","副詞","連体詞","接�
 //順番は 名詞 動詞 形容詞 副詞 連体詞 接続詞 *助詞 助動詞 感動詞 接頭詞 フィラー 記号 その他
 
 
-
+const wordTypeAll = ["名詞","動詞","形容詞","副詞","連体詞","接続詞","助詞","助動詞","感動詞","接頭詞","フィラー","記号","その他"]
 
 
 
@@ -496,16 +496,12 @@ const wordChoiceType = ["名詞","動詞","形容詞","副詞","連体詞","接�
 
 //============ 関数 ============
 function choiceStartWord() {
-
-
     return startWordList[Math.floor(Math.random() * startWordList.length)] ;
 }
 //配列の中からランダムに選ぶ
 //0~1未満 * 配列の長さ の切り捨て
 
 function screenReset() {
-
-
     descriptionPart.style.display = "block"
     document.getElementById("choice_word_main").style.display = "none" 
     document.getElementById("manual_start_screen").style.display = "none" ;
@@ -526,8 +522,6 @@ function screenReset() {
 
 
 function resetGame() {
-
-
     wordList = []
     logList = []
     wordsInDescription = []
@@ -553,7 +547,6 @@ function resetGame() {
 //初期化
 //currentWord の初期化を行っていないことに注意
 
-
 function showScreen(id) {
     screenReset()
     for (const screen of document.querySelectorAll(".screens")) {
@@ -565,6 +558,41 @@ function showScreen(id) {
 }
 //一旦全部消してから欲しいところを表示する
 //一番でかいレイヤーのスクリーンの操作
+
+function getTrueWord(wordInput) {
+
+
+    const misstakeWords = tokenizer.tokenize(wordInput)
+
+    trueWord ={}
+    let trueWordDictionaryForm = ""
+    let trueWordReading = ""
+    let trueWordPart = [] //語釈に含まれているかの確認に使う
+
+
+    for (let i = 0 ; i <= misstakeWords.length - 1 ; i++) {
+        const tenporaryWord =
+            misstakeWords[i].basic_form === "*"
+                ? misstakeWords[i].surface_form
+                : misstakeWords[i].basic_form
+
+        trueWordPart.push(tenporaryWord)
+            
+        trueWordDictionaryForm += tenporaryWord
+
+        const reWord = tokenizer.tokenize(tenporaryWord)
+        trueWordReading += reWord[0].reading //不要だがいつか使うかも
+        
+
+        trueWord = {
+            dictionaryForm : trueWordDictionaryForm,
+            reading : trueWordReading,
+            part : trueWordPart,
+            type : misstakeWords[misstakeWords.length - 1].pos
+        }
+    }
+}
+//手入力に対して、誤分析を回避するための処理
 
 
 function checkDuplicate(wordList,description) {
@@ -626,12 +654,26 @@ function checkDuplicate(wordList,description) {
         other.position.start === word.position.start
         &&
         other.position.end === word.position.end
-        &&
-        other.word !== word.word
-        &&
-        other.index !== word.index
+        ) === index)
+}
+//wordList(配列) が　description(文字列) を分解した際の要素を持っているかの確認
 
-//word,index を確認するのは語釈で同じ単語で循環した際の調整
+function dupProsess() {
+
+    if (flag.duplicate) {
+        return
+    }
+
+    let word_dup = ""
+    let checkText = ""
+
+    for (let i = 0 ; i <= dupInfo.length - 1; i++) {
+        if (i !== 0
+            &&
+            dupInfo[i].index === dupInfo[i - 1].index) {
+            continue
+        }
+//index を確認するのは語釈で同じ単語で循環した際の調整
 //りんご　食べ物 ののち
 //食べ物　りんご、りんご、りんご、りんご、りんご　とすると、該当部が
 //りんご　
@@ -641,9 +683,44 @@ function checkDuplicate(wordList,description) {
 //食べ物
 //となってしまう
 
-        ) === index)
+        word_dup =
+            i === dupInfo.length - 1
+                ? dupInfo[i].word
+                : `${dupInfo[i].word},`
+
+        checkText += `${dupInfo[i].index}語目 <span class = "highlight">${dupInfo[i].word}</span> : ${dupInfo[i].description}\n`
+    }
+        
+
+    dupInfo.sort((a,b) => b.position.start - a.position.start)
+    //頭から処理すると<span>などで位置がずれるので逆順に処理
+
+    let highlighted = description
+
+    for (const position of dupInfo.map(item => item.position)) {
+
+        highlighted = highlighted.slice(0,position.start)
+        + `<span class="highlight">${highlighted.slice(position.start,position.end)}</span>`
+        + highlighted.slice(position.end)
+    }            
+
+    if (flag.checkCurrent) {
+        checkText = `${count}語目 <span class = "highlight">${currentWord.dictionaryForm}</span> : ${highlighted}`
+    }
+    //現在の単語を処理していた場合、ハイライトが崩れるため別で処理
+
+    else {
+        checkText += `${count}語目 ${currentWord.dictionaryForm} : ${highlighted}`
+    }
+    
+    duplicateCheckText.textContent = `${word_dup} がすでに説明されています`
+    document.getElementById("dup_description").innerHTML = checkText ;
+    checkDialog.showModal() ;  
+
+    flag.checkCurrent = false ;
+
 }
-//wordList(配列) が　description(文字列) を分解した際の要素を持っているかの確認
+//語釈の単語がすでに説明されていた時の処理
 
 function checkWordByPart(beCheckedWords,checkingWords) {
 
@@ -687,61 +764,9 @@ function success() {
 }
 //成功処理
 
-function dupProsess() {
-
-    if (flag.duplicate) {
-        return
-    }
-
-    let word_dup = ""
-    let checkText = ""
-
-    for (let i = 0 ; i <= dupInfo.length - 1; i++) {
-
-        word_dup =
-            i === dupInfo.length - 1
-                ? dupInfo[i].word
-                : `${dupInfo[i].word},`
-
-        checkText += `${dupInfo[i].index}語目 <span class = "highlight">${dupInfo[i].word}</span> : ${dupInfo[i].description}\n`
-    }
-        
-
-    dupInfo.sort((a,b) => b.position.start - a.position.start)
-    //頭から処理すると<span>などで位置がずれるので逆順に処理
-
-    let highlighted = description
-
-    for (const position of dupInfo.map(item => item.position)) {
-
-        highlighted = highlighted.slice(0,position.start)
-        + `<span class="highlight">${highlighted.slice(position.start,position.end)}</span>`
-        + highlighted.slice(position.end)
-    }            
-
-    if (flag.checkCurrent) {
-        checkText = `${count}語目 <span class = "highlight">${currentWord.dictionaryForm}</span> : ${highlighted}`
-    }
-    //現在の単語を処理していた場合、ハイライトが崩れるため別で処理
-
-    else {
-        checkText += `${count}語目 ${currentWord.dictionaryForm} : ${highlighted}`
-    }
-    
-    duplicateCheckText.textContent = `${word_dup} がすでに説明されています`
-    document.getElementById("dup_description").innerHTML = checkText ;
-    checkDialog.showModal() ;  
-
-    flag.checkCurrent = false ;
-
-}
-//語釈の単語がすでに説明されていた時の処理
-
 function makeChoiceButton() {
-
-
     choiceArea.innerHTML = "" ;
-    choiceText.textContent = `${currentWord.dictionaryForm} : ${description}`
+    choiceText.innerHTML = `<span class="example">${currentWord.dictionaryForm} : ${description}</span>`
 
     const unipueWord = wordsInDescription.filter((word,index,array) => array.findIndex(other => 
         other.dictionaryForm === word.dictionaryForm 
@@ -779,7 +804,7 @@ function makeChoiceButton() {
             split : [word.dictionaryForm],
         })
 
-        currentWordText.innerHTML = `<span class="example">現在の単語 : ${currentWord.dictionaryForm}</span>`
+        currentWordText.innerHTML = `現在の単語 : ${currentWord.dictionaryForm}`
 
         document.getElementById("choice_word_main").style.display = "none" ;
         descriptionPart.style.display = "block" ;
@@ -914,40 +939,6 @@ function result() {
 }
 //リザルト画面に移動
 
-function getTrueWord(wordInput) {
-
-
-    const misstakeWords = tokenizer.tokenize(wordInput)
-
-    trueWord ={}
-    let trueWordDictionaryForm = ""
-    let trueWordReading = ""
-    let trueWordPart = [] //語釈に含まれているかの確認に使う
-
-
-    for (let i = 0 ; i <= misstakeWords.length - 1 ; i++) {
-        const tenporaryWord =
-            misstakeWords[i].basic_form === "*"
-                ? misstakeWords[i].surface_form
-                : misstakeWords[i].basic_form
-
-        trueWordPart.push(tenporaryWord)
-            
-        trueWordDictionaryForm += tenporaryWord
-
-        const reWord = tokenizer.tokenize(tenporaryWord)
-        trueWordReading += reWord[0].reading //不要だがいつか使うかも
-        
-
-        trueWord = {
-            dictionaryForm : trueWordDictionaryForm,
-            reading : trueWordReading,
-            part : trueWordPart,
-            type : misstakeWords[misstakeWords.length - 1].pos
-        }
-    }
-}
-//手入力に対して、誤分析を回避するための処理
 
 
 
@@ -994,8 +985,6 @@ document.getElementById("start_button").addEventListener("click",() => {
 //ボタンを押したらスタート画面
 
 document.getElementById("start_word_button").addEventListener("click",() => {
-
-
     const startWord = document.getElementById("start_word_input").value
     if (startWord === "") {
         document.getElementById("start_word_dialog").showModal() ;
@@ -1100,11 +1089,12 @@ document.getElementById("choice_word_button").addEventListener("click",() => {
         getTrueWord(choiceWordInput)
 
         const allWordInDescription = [] ;
-        for (let i = 0 ; i <= tokenizer.tokenize(description).length - 1 ; i++) {
+        const tokens = tokenizer.tokenize(description)
+        for (let i = 0 ; i <= tokens.length - 1 ; i++) {
             const tenporaryWord =
-                tokenizer.tokenize(description)[i].basic_form === "*"
-                    ? tokenizer.tokenize(description)[i].surface_form
-                    : tokenizer.tokenize(description)[i].basic_form
+                tokens[i].basic_form === "*"
+                    ? tokens[i].surface_form
+                    : tokens[i].basic_form
             allWordInDescription.push(tenporaryWord)
         }
 
@@ -1219,7 +1209,7 @@ document.getElementById("give_up_y").addEventListener("click",() => {
 document.getElementById("give_up_n").addEventListener("click",() => {
     giveDialog.close() ;
 })
-//いいえを押した 閉じるだけ
+//いいえを押したら閉じるだけ
 
 
 
@@ -1251,7 +1241,6 @@ const others = document.getElementById("others")
 const hinnsiBox = document.querySelectorAll(".hinnsi")
 
 const allCheck = document.getElementById("all_check")
-
 document.getElementById("open_setting_button").addEventListener("click",() =>{
     document.getElementById("setting_screen").style.display = "block" ;
     document.getElementById("title_screen").style.display = "none"
@@ -1281,84 +1270,18 @@ showWordMode.addEventListener("change",() => {
 })
 //説明された単語の表示設定
 
+for (let i = 0; i <= hinnsiBox.length - 1; i++) {
+    hinnsiBox[i].addEventListener("change",() => {
+        if (hinnsiBox[i].checked) {
+            wordChoiceType[6 + i] = wordTypeAll[6 + i]
+        }
 
+        else {
+            wordChoiceType[6 + i] = ""
+        }
+    })
 
-jyosi.addEventListener("change",() => {
-    if (jyosi.checked){
-        wordChoiceType[6] = "助詞"
-    }
-        
-    else {
-        wordChoiceType[6] = ""
-    }
-})
-//助詞 追加/削除
-
-jyodosi.addEventListener("change",() => {
-    if (jyodosi.checked){
-        wordChoiceType[7] = "助動詞"
-    }
-        
-    else {
-        wordChoiceType[7] = ""
-    }
-})
-//助動詞 追加/削除
-
-kanndousi.addEventListener("change",() => {
-    if (kanndousi.checked){
-        wordChoiceType[8] = "感動詞"
-    }
-        
-    else {
-        wordChoiceType[8] = ""
-    }
-})
-//感動詞 追加/削除
-
-settousi.addEventListener("change",() => {
-    if (settousi.checked){
-        wordChoiceType[9] = "接頭詞"
-    }
-        
-    else {
-        wordChoiceType[9] = ""
-    }
-})
-//接頭詞 追加/削除
-
-filler.addEventListener("change",() => {
-    if (filler.checked){
-        wordChoiceType[10] = "フィラー"
-    }
-        
-    else {
-        wordChoiceType[10] = ""
-    }
-})
-//フィラー 追加/削除
-
-kigou.addEventListener("change",() => {
-    if (kigou.checked){
-        wordChoiceType[11] = "記号"
-    }
-        
-    else {
-        wordChoiceType[11] = ""
-    }
-})
-//記号 追加/削除
-
-others.addEventListener("change",() => {
-    if (others.checked){
-        wordChoiceType[12] = "その他"
-    }
-        
-    else {
-        wordChoiceType[12] = ""
-    }
-})
-//その他 追加/削除
+}
 
 allCheck.addEventListener("click",() => {
     let allCheched = true ;
