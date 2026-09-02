@@ -15,7 +15,7 @@
     }
 
     button {
-        padding: 10px;
+        padding:10px;
         font-size: 1.5rem;
 
         width: auto;
@@ -186,6 +186,7 @@
 }
 
 
+
 * {
     max-width: 100%;
 }
@@ -217,6 +218,7 @@
 }
 
 .highlight {
+    padding:0px 5px;
     color: #303030;
     background-color: #ff4d4dd0;
 }
