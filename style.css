@@ -183,6 +183,10 @@
         min-height: 4.1em;
     }
 
+    #start_word_input {
+        width: clamp(150px, 40vw, 300px);
+        height: 3em;
+    }
 }
 
 
@@ -324,7 +328,6 @@ h4 {
     margin: auto;
     margin-top: 10vh;
 }
-
 
 
 

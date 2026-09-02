@@ -987,7 +987,7 @@ document.getElementById("start_button").addEventListener("click",() => {
 
 document.getElementById("start_word_button").addEventListener("click",() => {
     const startWord = document.getElementById("start_word_input").value
-    if (startWord === "") {
+    if (startWord === "" || /^[\s]+$/.test(startWord)) {
         document.getElementById("start_word_dialog").showModal() ;
         //no_start_word_button へ
     }
